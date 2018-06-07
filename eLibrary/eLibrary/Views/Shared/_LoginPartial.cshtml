@@ -5,6 +5,7 @@
     {
         @Html.AntiForgeryToken()
 
+     
         <li class="nav-item">
             <a class="nav-link js-scroll-trigger">
                 @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
