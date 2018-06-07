@@ -218,7 +218,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\src\css\creative.css" />
     <Content Include="Content\src\css\creative.min.css" />
-    <Content Include="Content\src\img\header.jpg" />
     <Content Include="Content\src\img\portfolio\fullsize\1.jpg" />
     <Content Include="Content\src\img\portfolio\fullsize\2.jpg" />
     <Content Include="Content\src\img\portfolio\fullsize\3.jpg" />
@@ -231,6 +230,7 @@
     <Content Include="Content\src\img\portfolio\thumbnails\4.jpg" />
     <Content Include="Content\src\img\portfolio\thumbnails\5.jpg" />
     <Content Include="Content\src\img\portfolio\thumbnails\6.jpg" />
+    <Content Include="Content\src\img\header.jpg" />
     <Content Include="Content\src\js\creative.js" />
     <Content Include="Content\src\js\creative.min.js" />
     <Content Include="Content\src\vendor\bootstrap\css\bootstrap-grid.css" />
