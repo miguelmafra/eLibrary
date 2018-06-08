@@ -17,7 +17,11 @@ namespace eLibrary.Models
         public int Ano { get; set; }
         public string Origem { get; set; }
         public string Idioma { get; set; }
-
+        public int _CategoriaID { get; set; }
+        public Categoria CategoriaID { get; set; }
+        public int _EditoraID { get; set; }
+        public Editora EditoraID { get; set; }
+        public int MyProperty { get; set; }
         //public string Assunto { get; set; }
         //public string Editora { get; set; } (Herança)
         //public string Categoria { get; set; } (Herança)
