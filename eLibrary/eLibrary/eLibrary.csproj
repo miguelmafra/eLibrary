@@ -204,7 +204,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Assunto.cs" />
+    <Compile Include="Models\Categoria.cs" />
+    <Compile Include="Models\Editora.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Livro.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -224,6 +228,12 @@
     <Content Include="Content\src\img\portfolio\fullsize\4.jpg" />
     <Content Include="Content\src\img\portfolio\fullsize\5.jpg" />
     <Content Include="Content\src\img\portfolio\fullsize\6.jpg" />
+    <Content Include="Content\src\img\portfolio\fullsize\livro-android.jpg" />
+    <Content Include="Content\src\img\portfolio\fullsize\livro-apple.jpg" />
+    <Content Include="Content\src\img\portfolio\fullsize\livro-c.jpg" />
+    <Content Include="Content\src\img\portfolio\fullsize\livro-java.jpg" />
+    <Content Include="Content\src\img\portfolio\fullsize\livro-microsoft.jpg" />
+    <Content Include="Content\src\img\portfolio\fullsize\livro-phyton.png" />
     <Content Include="Content\src\img\portfolio\thumbnails\1.jpg" />
     <Content Include="Content\src\img\portfolio\thumbnails\2.jpg" />
     <Content Include="Content\src\img\portfolio\thumbnails\3.jpg" />
@@ -231,6 +241,12 @@
     <Content Include="Content\src\img\portfolio\thumbnails\5.jpg" />
     <Content Include="Content\src\img\portfolio\thumbnails\6.jpg" />
     <Content Include="Content\src\img\header.jpg" />
+    <Content Include="Content\src\img\portfolio\thumbnails\livro-android.jpg" />
+    <Content Include="Content\src\img\portfolio\thumbnails\livro-apple.jpg" />
+    <Content Include="Content\src\img\portfolio\thumbnails\livro-c.jpg" />
+    <Content Include="Content\src\img\portfolio\thumbnails\livro-java.jpg" />
+    <Content Include="Content\src\img\portfolio\thumbnails\livro-microsoft.jpg" />
+    <Content Include="Content\src\img\portfolio\thumbnails\livro-phyton.png" />
     <Content Include="Content\src\js\creative.js" />
     <Content Include="Content\src\js\creative.min.js" />
     <Content Include="Content\src\vendor\bootstrap\css\bootstrap-grid.css" />
