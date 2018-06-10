@@ -202,6 +202,7 @@
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\EditorasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LivrosController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -434,6 +435,11 @@
     <Content Include="Views\Editoras\Delete.cshtml" />
     <Content Include="Views\Editoras\Details.cshtml" />
     <Content Include="Views\Editoras\Edit.cshtml" />
+    <Content Include="Views\Livros\Index.cshtml" />
+    <Content Include="Views\Livros\Create.cshtml" />
+    <Content Include="Views\Livros\Details.cshtml" />
+    <Content Include="Views\Livros\Delete.cshtml" />
+    <Content Include="Views\Livros\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
