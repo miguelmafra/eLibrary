@@ -214,6 +214,7 @@
     <Compile Include="Models\Editora.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Livro.cs" />
+    <Compile Include="Models\LivroViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
