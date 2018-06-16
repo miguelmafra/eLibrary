@@ -11,23 +11,55 @@ namespace eLibrary.Controllers
 {
     public class LivrosController : Controller
     {
-        // GET: Livros
-        public ActionResult Index()
+
+        public MeuContexto Contexto { get; set; }
+
+        public LivrosController(MeuContexto contexto)
+        {
+            this.Contexto = contexto;
+        }
+            // GET: Livros
+            public ActionResult Index()
         {
 
             MeuContexto contexto = new MeuContexto();
 
-            List<Livro> livros = contexto.Livros.ToList();
+            var livros = this.Contexto.Livros.ToList();
+            var editoras = this.Contexto.Editoras.ToList();
+            var assuntos = this.Contexto.Assuntos.ToList();
+            var categorias = this.Contexto.Categorias.ToList();
 
-            return View(livros);
+            var model = new LivroViewModel(livros, editoras, categorias, assuntos);
+
+            return View(model);
         }
         public ActionResult Create()
         {
+
+            MeuContexto contexto = new MeuContexto();
+
+            ViewBag.EditoraID = new SelectList(
+            this.Contexto.Editoras.ToList(),
+            "EditoraID",
+            "Nome"
+             );
+            
+            ViewBag.CategoriaID = new SelectList(
+            this.Contexto.Categorias.ToList(),
+            "CategoriaID",
+            "Nome"
+             );
+            
+            ViewBag.AssuntoID = new SelectList(
+            this.Contexto.Assuntos.ToList(),
+            "AssuntoID",
+            "Nome"
+             );
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Livro livro)
+        public ActionResult Create(Livro livro, string EditoraId, string CategoriaId, string AssuntoId)
         {
             if (ModelState.IsValid)
             {
@@ -36,6 +68,28 @@ namespace eLibrary.Controllers
                 contexto.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            ViewBag.EditoraID = new SelectList(
+            this.Contexto.Editoras.ToList(),
+            "EditoraID",
+            "Nome",
+            EditoraId
+             );
+
+            ViewBag.CategoriaID = new SelectList(
+            this.Contexto.Categorias.ToList(),
+            "CategoriaID",
+            "Nome",
+            CategoriaId
+             );
+
+            ViewBag.AssuntoID = new SelectList(
+            this.Contexto.Assuntos.ToList(),
+            "AssuntoID",
+            "Nome",
+            AssuntoId
+             );
+
             return View(livro);
         }
 

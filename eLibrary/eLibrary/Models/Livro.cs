@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,7 +8,7 @@ namespace eLibrary.Models
 {
     public class Livro
     {
-
+        [Key]
         public int LivroID { get; set; }
         public string Titulo { get; set; }
         public int ISBN { get; set; }
