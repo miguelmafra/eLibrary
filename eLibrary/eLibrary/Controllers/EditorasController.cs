@@ -17,7 +17,7 @@ namespace eLibrary.Controllers
 
             List<Editora> editoras = contexto.Editoras.ToList();
 
-            return View();
+            return View(editoras);
         }
         public ActionResult Create()
         {

@@ -19,7 +19,7 @@ namespace eLibrary.Controllers
 
             List<Categoria> categorias = contexto.Categorias.ToList();
 
-            return View();
+            return View(categorias);
         }
         public ActionResult Create()
         {

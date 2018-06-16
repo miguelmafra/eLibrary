@@ -19,7 +19,7 @@ namespace eLibrary.Controllers
             List<Assunto> assuntos = contexto.Assuntos.ToList();
 
            
-            return View();
+            return View(assuntos);
         }
         public ActionResult Create()
         {

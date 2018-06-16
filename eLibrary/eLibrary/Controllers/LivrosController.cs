@@ -19,7 +19,7 @@ namespace eLibrary.Controllers
 
             List<Livro> livros = contexto.Livros.ToList();
 
-            return View();
+            return View(livros);
         }
         public ActionResult Create()
         {
