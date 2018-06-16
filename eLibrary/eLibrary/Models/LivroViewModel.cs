@@ -11,10 +11,10 @@ namespace eLibrary.Models
 
         public LivroViewModel(List<Livro> livros, List<Editora> editoras, List<Categoria> categorias, List<Assunto> assuntos)
         {
-            Livros = livros;
-            Editoras = editoras;
-            Categorias = categorias;
-            Assuntos = assuntos;
+            this.Livros = livros;
+            this.Editoras = editoras;
+            this.Categorias = categorias;
+            this.Assuntos = assuntos;
         }
 
         public List<Livro> Livros { get; private set; }

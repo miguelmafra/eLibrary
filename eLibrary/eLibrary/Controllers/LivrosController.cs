@@ -18,11 +18,12 @@ namespace eLibrary.Controllers
         {
             this.Contexto = contexto;
         }
+    
             // GET: Livros
             public ActionResult Index()
         {
 
-            MeuContexto contexto = new MeuContexto();
+            //MeuContexto contexto = new MeuContexto();
 
             var livros = this.Contexto.Livros.ToList();
             var editoras = this.Contexto.Editoras.ToList();
@@ -36,7 +37,7 @@ namespace eLibrary.Controllers
         public ActionResult Create()
         {
 
-            MeuContexto contexto = new MeuContexto();
+            
 
             ViewBag.EditoraID = new SelectList(
             this.Contexto.Editoras.ToList(),
@@ -59,13 +60,13 @@ namespace eLibrary.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Livro livro, string EditoraId, string CategoriaId, string AssuntoId)
+        public ActionResult Create(Livro livro, string editoraId, string categoriaId, string assuntoId)
         {
             if (ModelState.IsValid)
             {
-                MeuContexto contexto = new MeuContexto();
-                contexto.Livros.Add(livro);
-                contexto.SaveChanges();
+                
+                this.Contexto.Livros.Add(livro);
+                this.Contexto.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -73,21 +74,21 @@ namespace eLibrary.Controllers
             this.Contexto.Editoras.ToList(),
             "EditoraID",
             "Nome",
-            EditoraId
+            editoraId
              );
 
             ViewBag.CategoriaID = new SelectList(
             this.Contexto.Categorias.ToList(),
             "CategoriaID",
             "Nome",
-            CategoriaId
+            categoriaId
              );
 
             ViewBag.AssuntoID = new SelectList(
             this.Contexto.Assuntos.ToList(),
             "AssuntoID",
             "Nome",
-            AssuntoId
+            assuntoId
              );
 
             return View(livro);
@@ -118,9 +119,9 @@ namespace eLibrary.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            MeuContexto contexto = new MeuContexto();
+            
 
-            Livro liv = contexto.Livros.Find(id);
+            Livro liv = Contexto.Livros.Find(id);
 
             if (liv == null)
             {
@@ -135,9 +136,9 @@ namespace eLibrary.Controllers
         {
             if (ModelState.IsValid)
             {
-                MeuContexto contexto = new MeuContexto();
-                contexto.Entry(liv).State = System.Data.Entity.EntityState.Modified;
-                contexto.SaveChanges();
+                
+                this.Contexto.Entry(liv).State = System.Data.Entity.EntityState.Modified;
+                this.Contexto.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(liv);
@@ -149,9 +150,9 @@ namespace eLibrary.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            MeuContexto contexto = new MeuContexto();
+            
 
-            Livro liv = contexto.Livros.Find(id);
+            Livro liv = Contexto.Livros.Find(id);
             if (liv == null)
             {
                 return HttpNotFound();
@@ -166,11 +167,11 @@ namespace eLibrary.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            MeuContexto contexto = new MeuContexto();
-            Livro liv = contexto.Livros.Find(id);
+            
+            Livro liv = Contexto.Livros.Find(id);
 
-            contexto.Livros.Remove(liv);
-            contexto.SaveChanges();
+            this.Contexto.Livros.Remove(liv);
+            this.Contexto.SaveChanges();
             return RedirectToAction("Index");
         }
     }
