@@ -12,12 +12,17 @@ namespace eLibrary.Controllers
     public class LivrosController : Controller
     {
 
-        public MeuContexto Contexto { get; set; }
+        public MeuContexto Contexto = new MeuContexto();
 
-        public LivrosController(MeuContexto contexto)
+        public LivrosController()
         {
-            this.Contexto = contexto;
+
         }
+
+        //public LivrosController(MeuContexto contexto)
+        //{
+        //    this.Contexto = contexto;
+        //}
     
             // GET: Livros
             public ActionResult Index()
@@ -34,10 +39,12 @@ namespace eLibrary.Controllers
 
             return View(model);
         }
+
+       
         public ActionResult Create()
         {
 
-            
+        
 
             ViewBag.EditoraID = new SelectList(
             this.Contexto.Editoras.ToList(),

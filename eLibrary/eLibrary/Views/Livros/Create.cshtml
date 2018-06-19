@@ -4,12 +4,13 @@
     ViewBag.Title = "Cadastrar Livros";
 }
 
-<header class="masthead text-white d-flex">
-    <div class="container my-auto">
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <header class="masthead text-white d-flex">
+        <div class="container my-auto">
 
             <div class="form-horizontal">
                 <h4>Livro</h4>
@@ -107,11 +108,12 @@
                         </div>
                     </div>
                 </div>
-        }
-
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-        
-        </div>
+            </div>
     </header>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
