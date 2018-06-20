@@ -1,11 +1,13 @@
-﻿@{
+﻿@using Microsoft.AspNet.Identity
+
+@{
     ViewBag.Title = "Home Page";
 }
 
 <body id="page-top">
 
     <!-- Navigation -->
-
+    @User.Identity.GetUserId()
 
     <header class="masthead text-center text-white d-flex">
         <div class="container my-auto">
