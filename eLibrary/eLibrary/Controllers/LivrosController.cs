@@ -2,6 +2,7 @@
 using eLibrary.Models.DAL;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -150,18 +151,43 @@ namespace eLibrary.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Livro liv)
+        public ActionResult Edit(Livro livro, string editoraId, string categoriaId, string assuntoId)
         {
             if (ModelState.IsValid)
             {
-                
-                this.Contexto.Entry(liv).State = System.Data.Entity.EntityState.Modified;
+                livro.CategoriaID = int.Parse(categoriaId);
+                livro.AssuntoID = int.Parse(assuntoId);
+                livro.EditoraID = int.Parse(editoraId);
+
+                this.Contexto.Entry(livro).State = EntityState.Modified;
                 this.Contexto.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(liv);
+
+            ViewBag.EditoraID = new SelectList(
+               this.Contexto.Editoras.ToList(),
+               "EditoraID",
+               "Nome",
+               editoraId
+               );
+
+            ViewBag.CategoriaID = new SelectList(
+            this.Contexto.Categorias.ToList(),
+            "CategoriaID",
+            "Nome",
+            categoriaId
+            );
+
+            ViewBag.AssuntoID = new SelectList(
+            this.Contexto.Assuntos.ToList(),
+            "AssuntoID",
+            "Nome",
+            assuntoId
+            );
+
+            return View(livro);
         }
-        public ActionResult Delete(int? id)
+            public ActionResult Delete(int? id)
         {
             if (id == null)
             {
