@@ -8,103 +8,112 @@
     <div class="container my-auto">
 
         <div>
-            <h4>Livro</h4>
+            
             <hr />
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model._Assunto.Nome)
-                </dt>
+            <div class="row">
+                <div class="col-md-6">
+                    <dl class="dl-horizontal">
 
-                <dd>
-                    @Html.DisplayFor(model => model._Assunto.Nome)
-                </dd>
+                        <hr />
+                        <dt>
+                            @Html.DisplayNameFor(model => model._Assunto.Nome)
+                        </dt>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model._Categoria.Nome)
-                </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model._Assunto.Nome)
+                        </dd>
 
-                <dd>
-                    @Html.DisplayFor(model => model._Categoria.Nome)
-                </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model._Categoria.Nome)
+                        </dt>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model._Editora.Nome)
-                </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model._Categoria.Nome)
+                        </dd>
 
-                <dd>
-                    @Html.DisplayFor(model => model._Editora.Nome)
-                </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model._Editora.Nome)
+                        </dt>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Titulo)
-                </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model._Editora.Nome)
+                        </dd>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Titulo)
-                </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Titulo)
+                        </dt>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.ISBN)
-                </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Titulo)
+                        </dd>
 
-                <dd>
-                    @Html.DisplayFor(model => model.ISBN)
-                </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ISBN)
+                        </dt>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Paginas)
-                </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.ISBN)
+                        </dd>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Paginas)
-                </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Paginas)
+                        </dt>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Edicao)
-                </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Paginas)
+                        </dd>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Edicao)
-                </dd>
+                </div>
+                <div class="col-md-6">
+                    <hr />
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Edicao)
+                    </dt>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Autor)
-                </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Edicao)
+                    </dd>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Autor)
-                </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Autor)
+                    </dt>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Ano)
-                </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Autor)
+                    </dd>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Ano)
-                </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Origem)
-                </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Ano)
+                    </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Origem)
-                </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Ano)
+                    </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Idioma)
-                </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Origem)
+                    </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Idioma)
-                </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Origem)
+                    </dd>
 
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Idioma)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Idioma)
+                    </dd>
+                </div>
+            </div>
             </dl>
-        </div>
-        <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.LivroID }) |
-            @Html.ActionLink("Back to List", "Index")
-        </p>
+            </div>  
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.LivroID }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
 
-</div>
+        </div>
 </header>
