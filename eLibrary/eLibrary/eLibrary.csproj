@@ -212,6 +212,7 @@
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\DAL\MeuContexto.cs" />
     <Compile Include="Models\Editora.cs" />
+    <Compile Include="Models\EditViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Livro.cs" />
     <Compile Include="Models\LivroViewModel.cs" />
