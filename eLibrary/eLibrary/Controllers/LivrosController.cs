@@ -121,21 +121,32 @@ namespace eLibrary.Controllers
         }
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            var livro = this.Contexto.Livros.FirstOrDefault(_ => _.LivroID == id);
+            var editoras = this.Contexto.Editoras.ToList();
+            var assuntos = this.Contexto.Assuntos.ToList();
+            var categorias = this.Contexto.Categorias.ToList();
 
-            
+            ViewBag.EditoraID = new SelectList(
+                this.Contexto.Editoras.ToList(),
+                "EditoraID",
+                "Nome"
+                );
 
-            Livro liv = Contexto.Livros.Find(id);
+            ViewBag.CategoriaID = new SelectList(
+            this.Contexto.Categorias.ToList(),
+            "CategoriaID",
+            "Nome"
+            );
 
-            if (liv == null)
-            {
-                return HttpNotFound();
-            }
+            ViewBag.AssuntoID = new SelectList(
+            this.Contexto.Assuntos.ToList(),
+            "AssuntoID",
+            "Nome"
+            );
 
-            return View(liv);
+            var model = new EditViewModel(livro, categorias, editoras, assuntos);
+
+            return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
