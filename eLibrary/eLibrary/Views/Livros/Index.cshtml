@@ -1,7 +1,15 @@
 ﻿@model eLibrary.Models.LivroViewModel
+@using Microsoft.AspNet.Identity
+@using eLibrary.Models
 
 @{
     ViewBag.Title = "Index";
+}
+
+@{
+    HttpContext.Current.User.Identity.GetUserId();
+    string userId = User.Identity.GetUserId();
+    var user = (new ApplicationDbContext()).Users.FirstOrDefault(s => s.Id == userId);
 }
 
 <header class="masthead text-white d-flex">
@@ -13,7 +21,7 @@
         <table class="table">
             <tr>
                 <th>
-                   Id
+                    Id
                 </th>
                 <th>
                     Titulo
@@ -27,7 +35,7 @@
                 <th>
                     Editora
                 </th>
-             
+
             </tr>
 
             @foreach (var item in Model.Livros)
@@ -49,23 +57,35 @@
                     @Html.DisplayFor(modelItem => item._Editora.Nome)
 
                 </td>
-                @*<td>
-                    <div class="btn-group">
 
-                        <a href="/Livros/Details/@item.LivroID" class="btn btn-primary">Detalhes</a>
 
-                        <a href="/Reservas/Reservar/@item.LivroID" class="btn btn-success ">Reservar</a>
-                    </div>
-                </td>*@
-                
                 <td>
-            
-                    @Html.ActionLink("Edit", "Edit", new { id = item.LivroID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.LivroID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.LivroID })
-                    
-                </td>
-            </tr>
+                    @if (user != null)
+                    {
+                        if (user.IsAdministrator)
+                        {
+                            @Html.ActionLink("Edit | ", "Edit", new { id = item.LivroID })
+
+                            @Html.ActionLink("Details |", "Details", new { id = item.LivroID })
+
+                            @Html.ActionLink(" Delete", "Delete", new { id = item.LivroID })
+                        }
+                    }
+                    else
+                    {
+                    <td>
+                        <div class="btn-group">
+
+                            <a href="/Livros/Details/@item.LivroID" class="btn btn-primary">Detalhes</a>
+
+                            <a href="/Reservas/Reservar/@item.LivroID" class="btn btn-success ">Reservar</a>
+                        </div>
+                    </td>
+                }
+
+                    </td>
+
+                </tr>
             }
 
         </table>
