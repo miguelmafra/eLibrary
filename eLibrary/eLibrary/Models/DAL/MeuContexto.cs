@@ -15,7 +15,8 @@ namespace eLibrary.Models.DAL
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Editora> Editoras { get; set; }
         public DbSet<Assunto> Assuntos { get; set; }
-        
+        public DbSet<Reserva> Reservas { get; set; }
+
 
     }
 }
