@@ -1,8 +1,15 @@
 ﻿@model IEnumerable<eLibrary.Models.Assunto>
+@using Microsoft.AspNet.Identity
+@using eLibrary.Models
 
 @{
     ViewBag.Title = "Index";
 }
+
+@{
+    HttpContext.Current.User.Identity.GetUserId();
+    string userId = User.Identity.GetUserId();
+    var user = (new ApplicationDbContext()).Users.FirstOrDefault(s => s.Id == userId);
 }
 
 <header class="masthead text-white d-flex">
@@ -26,13 +33,17 @@
                         @Html.DisplayFor(modelItem => item.Nome)
                     </td>
                     <td>
-                        @*@if (user != null)
+                        @if (user != null)
                         {
-                            @if(user.IsAdministrator == true){*@
-                                @Html.ActionLink("Edit", "Edit", new { id = item.AssuntoID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.AssuntoID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.AssuntoID })
-                        @*}*@
+                            if (user.IsAdministrator)
+                            {
+                                @Html.ActionLink("Edit | ", "Edit", new { id = item.AssuntoID })
+
+                                @Html.ActionLink("Details |", "Details", new { id = item.AssuntoID })
+
+                                @Html.ActionLink(" Delete", "Delete", new { id = item.AssuntoID })
+                            }
+                        }
                     </td>
                 </tr>
             }
