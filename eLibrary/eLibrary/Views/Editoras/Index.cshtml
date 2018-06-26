@@ -1,7 +1,15 @@
 ﻿@model IEnumerable<eLibrary.Models.Editora>
+@using Microsoft.AspNet.Identity
+@using eLibrary.Models
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Editoras";
+}
+
+@{
+    HttpContext.Current.User.Identity.GetUserId();
+    string userId = User.Identity.GetUserId();
+    var user = (new ApplicationDbContext()).Users.FirstOrDefault(s => s.Id == userId);
 }
 
 <header class="masthead text-white d-flex">
@@ -25,17 +33,21 @@
                         @Html.DisplayFor(modelItem => item.Nome)
                     </td>
                     <td>
-                        @*@if (user != null)
+                        @if (user != null)
                         {
-                            @if(user.IsAdministrator == true){*@
-                                @Html.ActionLink("Edit", "Edit", new { id = item.EditoraID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.EditoraID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.EditoraID })
-                        @*}*@
+                            if (user.IsAdministrator)
+                            {
+                                @Html.ActionLink("Edit | ", "Edit", new { id = item.EditoraID })
+
+                                @Html.ActionLink("Details |", "Details", new { id = item.EditoraID })
+
+                                @Html.ActionLink(" Delete", "Delete", new { id = item.EditoraID })
+                            }
+                        }
                     </td>
                 </tr>
             }
 
         </table>
-        </div>
-    </header>
+    </div>
+</header>
