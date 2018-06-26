@@ -21,7 +21,7 @@ namespace eLibrary.Controllers
                 Reserva reserva = new Reserva();
                 reserva.LivroID = livro.LivroID;
                 
-                this.Contexto.Reservas.Add(reserva);
+                //this.Contexto.Reservas.Add(reserva);
                 this.Contexto.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -31,10 +31,10 @@ namespace eLibrary.Controllers
         
         public ActionResult Delete(int id)
         {
-            var reserva = this.Contexto.Reservas.FirstOrDefault(_ => _.ReservaID == id);
-             if (reserva != null)
+            //var reserva = this.Contexto.Reservas.FirstOrDefault(_ => _.ReservaID == id);
+            // if (reserva != null)
              {
-            this.Contexto.Reservas.Remove(reserva);
+            //this.Contexto.Reservas.Remove(reserva);
             this.Contexto.SaveChanges();
             return RedirectToAction("Index");
              }
