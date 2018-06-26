@@ -13,11 +13,7 @@
 <body id="page-top">
 
     <!-- Navigation -->
-    @if (user != null)
-    {
-
-        @if (user.IsAdministrator)
-        {
+  
             <header class="masthead text-center text-white d-flex">
                 <div class="container my-auto">
                     <div class="row">
@@ -31,7 +27,7 @@
                         </div>
 
                         <div class="col-lg-8 mx-auto">
-                            <p class="text-faded mb-5">Biblioteca virtual para reserva com os melhores lançamentos de livros da atualidade.</p>
+                            <p class="text-faded mb-5">Biblioteca virtual para reserva com os melhores lançamentos de livros da atualidade no que se refere à programação.</p>
                             <a class="btn btn-primary btn-xl js-scroll-trigger" href="/Livros/Index">Livros</a>
                         </div>
                     </div>
@@ -40,7 +36,7 @@
 
 
 
-            <section class="p-0" id="portfolio">
+            @*<section class="p-0" id="portfolio">
 
                 <div class="container-fluid p-0">
                     <div class="row no-gutters popup-gallery">
@@ -164,16 +160,10 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section>*@
 
-        }
-        else
-        {
-            <p>
-                ODEIO MINHA VIDA
-            </p>
-        }
-    }
+     
+    
 </body>
 
 
