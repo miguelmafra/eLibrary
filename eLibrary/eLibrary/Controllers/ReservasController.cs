@@ -5,29 +5,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using System.Net;
 
 namespace eLibrary.Controllers
 {
+   
     public class ReservasController : Controller
     {
         public MeuContexto Contexto = new MeuContexto();
 
-        // GET: Reservas
-        public ActionResult Reservar(int LivroId)
+        
+
+        public ActionResult Index()
         {
-            if (ModelState.IsValid) {
-                var livro = this.Contexto.Livros.FirstOrDefault(_ => _.LivroID == LivroId);
+            return View();
+        }
+        // GET: Reservas
+        public ActionResult Reservar(int? id)
+        {
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            if (ModelState.IsValid)
+            {
+                var userId = HttpContext.User.Identity.GetUserId();
+                var user = (new ApplicationDbContext()).Users.FirstOrDefault(s => s.Id == userId);
+
+                //var livro = this.Contexto.Livros.FirstOrDefault(_ => _.LivroID == LivroId );
 
                 Reserva reserva = new Reserva();
-                reserva.LivroID = livro.LivroID;
+                reserva.LivroID = id.Value;
+                reserva.UserID = userId;
                 
-               this.Contexto.Reservas.Add(reserva);
+                this.Contexto.Reservas.Add(reserva);
                 this.Contexto.SaveChanges();
                 return RedirectToAction("Index");
             }
             
             return View();
         }
+
+        
         
         public ActionResult Delete(int id)
         {

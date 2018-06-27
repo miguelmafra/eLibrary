@@ -13,6 +13,5 @@ namespace eLibrary.Models
         public int LivroID { get; set; }
         public virtual Livro _Livro { get; set; }
         public string UserID { get; set; }
-        public virtual ApplicationUser _ApplicationUser { get; set; }
     }
 }

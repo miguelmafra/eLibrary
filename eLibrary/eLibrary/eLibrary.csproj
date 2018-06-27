@@ -444,10 +444,11 @@
     <Content Include="Views\Livros\Details.cshtml" />
     <Content Include="Views\Livros\Delete.cshtml" />
     <Content Include="Views\Livros\Edit.cshtml" />
+    <Content Include="Views\Reservas\Index.cshtml" />
+    <Content Include="Views\Reservas\Reservar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Reservas\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

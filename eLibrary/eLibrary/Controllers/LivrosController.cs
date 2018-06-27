@@ -7,30 +7,29 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+
+
 
 namespace eLibrary.Controllers
 {
     public class LivrosController : Controller
     {
 
-        public MeuContexto Contexto = new MeuContexto();
+
+    public MeuContexto Contexto = new MeuContexto();
 
         public LivrosController()
         {
 
         }
-
-        //public LivrosController(MeuContexto contexto)
-        //{
-        //    this.Contexto = contexto;
-        //}
     
             // GET: Livros
             public ActionResult Index()
         {
+            
 
-            //MeuContexto contexto = new MeuContexto();
-
+          
             var livros = this.Contexto.Livros.ToList();
             var editoras = this.Contexto.Editoras.ToList();
             var assuntos = this.Contexto.Assuntos.ToList();
