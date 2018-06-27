@@ -1,21 +1,66 @@
 ﻿@using Microsoft.AspNet.Identity
+@using eLibrary.Models
+
+@{
+    HttpContext.Current.User.Identity.GetUserId();
+    string userId = User.Identity.GetUserId();
+    var user = (new ApplicationDbContext()).Users.FirstOrDefault(s => s.Id == userId);
+}
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
     {
+
         @Html.AntiForgeryToken()
 
 
-        <li class="nav-item">
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li class="nav-item">
-            <a  href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-        </li>
+
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+
+                   
+                @if (!user.IsAdministrator)
+                {
+
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="/Livros/Index">Livros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="/Reservas/Index">Minhas Reservas</a>
+                    </li>
+
+                }
+                else
+                {
+
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="/Categorias/Index">Categoria</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="/Assuntos/Index">Assuntos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="/Editoras/Index">Editoras</a>
+                    </li>
+                }
+
+                    <li class="nav-item">
+                        @Html.ActionLink("Bem Vindo " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link js-scroll-trigger" })
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="javascript:document.getElementById('logoutForm').submit()">Sair</a>
+                    </li>
+                
+
+            </ul>
+        </div>
     }
-}
-else
-{
+} else { 
+
+
     <li class="nav-item">
         @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link js-scroll-trigger" })
     </li>
