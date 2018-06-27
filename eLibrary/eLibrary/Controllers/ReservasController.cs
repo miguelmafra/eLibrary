@@ -19,7 +19,8 @@ namespace eLibrary.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var listaReservas = this.Contexto.Reservas.ToList();
+            return View(listaReservas);
         }
         // GET: Reservas
         public ActionResult Reservar(int? id)

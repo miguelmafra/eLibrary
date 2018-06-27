@@ -15,80 +15,87 @@
 <header class="masthead text-white d-flex">
     <div class="container my-auto">
 
-        <p>
-            @Html.ActionLink("Create New", "Create")
-        </p>
-        <table class="table">
-            <tr>
-                <th>
-                    Id
-                </th>
-                <th>
-                    Titulo
-                </th>
-                <th>
-                    Assunto
-                </th>
-                <th>
-                    Categoria
-                </th>
-                <th>
-                    Editora
-                </th>
-
-            </tr>
-
-            @foreach (var item in Model.Livros)
+        @if (user != null)
+        {
+            if (user.IsAdministrator)
             {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LivroID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Titulo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item._Assunto.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item._Categoria.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item._Editora.Nome)
-
-                </td>
-
-
-                <td>
-                    @if (user != null)
-                    {
-                        if (user.IsAdministrator)
-                        {
-                            @Html.ActionLink("Edit | ", "Edit", new { id = item.LivroID })
-
-                            @Html.ActionLink("Details |", "Details", new { id = item.LivroID })
-
-                            @Html.ActionLink(" Delete", "Delete", new { id = item.LivroID })
-                        }
-                   
-                    
-                    <td>
-                        <div class="btn-group">
-
-                            <a href="/Livros/Details/@item.LivroID" class="btn btn-primary">Detalhes</a>
-
-                            @Html.ActionLink("Reservar", "Reservar","Reservas", new { id = item.LivroID }, htmlAttributes: new { @class = "btn btn-success" })
-                        </div>
-                    </td>
-                        
-                    }
-
-                    </td>
-
-                </tr>
+                <p>
+                    @Html.ActionLink("Create New", "Create")
+                </p>
             }
+        }
 
-        </table>
+                <table class="table">
+                    <tr>
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Titulo
+                        </th>
+                        <th>
+                            Assunto
+                        </th>
+                        <th>
+                            Categoria
+                        </th>
+                        <th>
+                            Editora
+                        </th>
 
-    </div>
+                    </tr>
+
+                    @foreach (var item in Model.Livros)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LivroID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Titulo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item._Assunto.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item._Categoria.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item._Editora.Nome)
+
+                            </td>
+
+
+                            <td>
+                                @if (user != null)
+                                {
+                                    if (user.IsAdministrator)
+                                    {
+                                        @Html.ActionLink("Edit | ", "Edit", new { id = item.LivroID })
+
+                                        @Html.ActionLink("Details |", "Details", new { id = item.LivroID })
+
+                                        @Html.ActionLink(" Delete", "Delete", new { id = item.LivroID })
+                                    }
+
+
+                                <td>
+                                    <div class="btn-group">
+
+                                        <a href="/Livros/Details/@item.LivroID" class="btn btn-primary">Detalhes</a>
+
+                                        @Html.ActionLink("Reservar", "Reservar", "Reservas", new { id = item.LivroID }, htmlAttributes: new { @class = "btn btn-success" })
+                                    </div>
+                                </td>
+
+                            }
+
+                                </td>
+
+                            </tr>
+                        }
+
+                </table>
+
+            </div>
 </header>

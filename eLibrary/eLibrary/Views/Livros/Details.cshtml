@@ -1,14 +1,22 @@
 ﻿@model eLibrary.Models.Livro
+@using Microsoft.AspNet.Identity
+@using eLibrary.Models
 
 @{
     ViewBag.Title = "Detalhes";
+}
+
+@{
+    HttpContext.Current.User.Identity.GetUserId();
+    string userId = User.Identity.GetUserId();
+    var user = (new ApplicationDbContext()).Users.FirstOrDefault(s => s.Id == userId);
 }
 
 <header class="masthead text-white d-flex">
     <div class="container my-auto">
 
         <div>
-            
+
             <hr />
             <div class="row">
                 <div class="col-md-6">
@@ -109,11 +117,19 @@
                 </div>
             </div>
             </dl>
-            </div>  
-            <p>
-                @Html.ActionLink("Edit", "Edit", new { id = Model.LivroID }) |
-                @Html.ActionLink("Back to List", "Index")
-            </p>
-
         </div>
+        @if (user != null)
+        {
+            if (user.IsAdministrator)
+            {
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.LivroID }) |
+
+                </p>
+            }   
+        }
+        @Html.ActionLink("Back to List", "Index")
+
+
+    </div>
 </header>
