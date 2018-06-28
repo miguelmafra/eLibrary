@@ -40,9 +40,9 @@ namespace eLibrary.Controllers
             return View(model);
         }
         // GET: Reservas
-        public ActionResult Reservar(int? id)
+        public ActionResult Reservar(int? livroId)
         {
-            if(id == null)
+            if(livroId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -52,12 +52,16 @@ namespace eLibrary.Controllers
                 var userId = HttpContext.User.Identity.GetUserId();
                 var user = (new ApplicationDbContext()).Users.FirstOrDefault(s => s.Id == userId);
 
+                userId = User.Identity.GetUserId();
+                var livro = this.Contexto.Livros.FirstOrDefault(_ => _.LivroID == livroId);
                 //var livro = this.Contexto.Livros.FirstOrDefault(_ => _.LivroID == LivroId );
 
                 Reserva reserva = new Reserva();
-                reserva.LivroID = id.Value;
+                reserva.LivroID = livroId.Value;
                 reserva.UserID = userId;
-                
+                reserva.Data = System.DateTime.Now;
+
+                livro.Status = false;
                 this.Contexto.Reservas.Add(reserva);
                 this.Contexto.SaveChanges();
                 return RedirectToAction("Index");
