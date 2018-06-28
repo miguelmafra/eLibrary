@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.Net;
+using System.Data.Entity;
 
 namespace eLibrary.Controllers
 {
@@ -49,19 +50,30 @@ namespace eLibrary.Controllers
             return View();
         }
 
-        
-        
+
+
         public ActionResult Delete(int id)
         {
             var reserva = this.Contexto.Reservas.FirstOrDefault(_ => _.ReservaID == id);
-             if (reserva != null)
-             {
-            this.Contexto.Reservas.Remove(reserva);
-            this.Contexto.SaveChanges();
-            return RedirectToAction("Index");
-             }
+            if (reserva != null)
+            {
+                var livro = this.Contexto.Livros.FirstOrDefault(_ => _.LivroID == reserva.LivroID);
+                livro.Status = true;
+                this.Contexto.Entry(livro).State = EntityState.Modified;
+                this.Contexto.Reservas.Remove(reserva);
+                this.Contexto.SaveChanges();
+                return RedirectToAction("Index");
+            }
             return View();
         }
-       
+
+        public ActionResult HistoricoReservas()
+        {
+            var livros = this.Contexto.Livros.ToList();
+            var reservas = this.Contexto.Reservas.ToList();
+            var model = new ReservasViewModel(livros, reservas);
+            return View(model);
+        }
+
     }
 }
