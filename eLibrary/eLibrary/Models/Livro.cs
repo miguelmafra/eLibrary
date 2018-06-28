@@ -24,6 +24,7 @@ namespace eLibrary.Models
         public virtual Editora _Editora { get; set; }
         public int AssuntoID { get; set; }
         public virtual Assunto _Assunto { get; set; }
+        public bool Status { get; set; }
         //public string Assunto { get; set; }
         //public string Editora { get; set; } (Herança)
         //public string Categoria { get; set; } (Herança)

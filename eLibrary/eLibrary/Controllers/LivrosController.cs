@@ -17,19 +17,19 @@ namespace eLibrary.Controllers
     {
 
 
-    public MeuContexto Contexto = new MeuContexto();
+        public MeuContexto Contexto = new MeuContexto();
 
         public LivrosController()
         {
 
         }
-    
-            // GET: Livros
-            public ActionResult Index()
-        {
-            
 
-          
+        // GET: Livros
+        public ActionResult Index()
+        {
+
+
+
             var livros = this.Contexto.Livros.ToList();
             var editoras = this.Contexto.Editoras.ToList();
             var assuntos = this.Contexto.Assuntos.ToList();
@@ -40,24 +40,24 @@ namespace eLibrary.Controllers
             return View(model);
         }
 
-       
+
         public ActionResult Create()
         {
 
-        
+
 
             ViewBag.EditoraID = new SelectList(
             this.Contexto.Editoras.ToList(),
             "EditoraID",
             "Nome"
              );
-            
+
             ViewBag.CategoriaID = new SelectList(
             this.Contexto.Categorias.ToList(),
             "CategoriaID",
             "Nome"
              );
-            
+
             ViewBag.AssuntoID = new SelectList(
             this.Contexto.Assuntos.ToList(),
             "AssuntoID",
@@ -71,7 +71,7 @@ namespace eLibrary.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+
                 this.Contexto.Livros.Add(livro);
                 this.Contexto.SaveChanges();
                 return RedirectToAction("Index");
@@ -186,14 +186,14 @@ namespace eLibrary.Controllers
 
             return View(livro);
         }
-            public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            
+
 
             Livro liv = Contexto.Livros.Find(id);
             if (liv == null)
@@ -210,12 +210,35 @@ namespace eLibrary.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            
+
             Livro liv = Contexto.Livros.Find(id);
 
             this.Contexto.Livros.Remove(liv);
             this.Contexto.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
+        public ActionResult AlterarStatus(int id)
+        {
+            var livro = this.Contexto.Livros.FirstOrDefault(_ => _.LivroID == id);
+
+            if (livro.Status)
+            {
+                livro.Status = false;
+            }
+            else
+            {
+                livro.Status = true;
+                Reserva reserva = this.Contexto.Reservas.FirstOrDefault(_ => _.LivroID == livro.LivroID);
+                this.Contexto.Reservas.Remove(reserva);
+            }
+
+            this.Contexto.Entry(livro).State = EntityState.Modified;
+            this.Contexto.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
     }
 }
