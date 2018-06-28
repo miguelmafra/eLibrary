@@ -447,6 +447,7 @@
     <Content Include="Views\Livros\Edit.cshtml" />
     <Content Include="Views\Reservas\Index.cshtml" />
     <Content Include="Views\Reservas\Reservar.cshtml" />
+    <Content Include="Views\Reservas\HistoricoReservas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

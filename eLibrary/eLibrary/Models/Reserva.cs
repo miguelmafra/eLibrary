@@ -13,5 +13,7 @@ namespace eLibrary.Models
         public int LivroID { get; set; }
         public virtual Livro _Livro { get; set; }
         public string UserID { get; set; }
+        public DateTime Data { get; set; }
+
     }
 }

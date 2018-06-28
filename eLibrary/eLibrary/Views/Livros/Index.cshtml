@@ -83,13 +83,13 @@
 
                                         @Html.ActionLink("Details |", "Details", new { id = item.LivroID })
 
-                                        @Html.ActionLink(" Delete", "Delete", new { id = item.LivroID })
+                                        @Html.ActionLink(" Delete  |", "Delete", new { id = item.LivroID })
 
-                                        @Html.ActionLink("Alterar Status", "AlterarStatus", "Livros", new { id = item.LivroID }, htmlAttributes: new { @class = "btn btn-warning" })
+                                        @Html.ActionLink("Alterar Status", "AlterarStatus", "Livros", new { id = item.LivroID })
                                     }
 
 
-<td>
+                                    <td>
                                 <div class="btn-group">
 
                                     <a href="/Livros/Details/@item.LivroID" class="btn btn-primary">Detalhes</a>
