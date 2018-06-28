@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.Net;
 using System.Data.Entity;
+using System.Security.Claims;
 
 namespace eLibrary.Controllers
 {
@@ -20,8 +21,23 @@ namespace eLibrary.Controllers
 
         public ActionResult Index()
         {
-            var listaReservas = this.Contexto.Reservas.ToList();
-            return View(listaReservas);
+            var livros = this.Contexto.Livros.ToList();
+            string userId = User.Identity.GetUserId();
+            List<Reserva> reservas = this.Contexto.Reservas.Where(r => r.UserID == userId).ToList();
+
+            List<Reserva> reservasUser = new List<Reserva>();
+            for (int i = 0; i < reservas.Count; i++)
+            {
+                if (reservas[i].UserID.Equals(userId))
+                {
+                    reservasUser.Add(reservas[i]);
+                }
+            }
+
+            var model = new ReservasViewModel(livros, reservasUser);
+
+
+            return View(model);
         }
         // GET: Reservas
         public ActionResult Reservar(int? id)
