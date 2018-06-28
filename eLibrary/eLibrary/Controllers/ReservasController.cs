@@ -21,28 +21,31 @@ namespace eLibrary.Controllers
 
         public ActionResult Index()
         {
-            var livros = this.Contexto.Livros.ToList();
-            string userId = User.Identity.GetUserId();
-            List<Reserva> reservas = this.Contexto.Reservas.Where(r => r.UserID == userId).ToList();
 
-            List<Reserva> reservasUser = new List<Reserva>();
-            for (int i = 0; i < reservas.Count; i++)
-            {
-                if (reservas[i].UserID.Equals(userId))
-                {
-                    reservasUser.Add(reservas[i]);
-                }
-            }
+            var listaReservas = this.Contexto.Reservas.ToList();
+             return View(listaReservas);
+            //var livros = this.Contexto.Livros.ToList();
+            //string userId = User.Identity.GetUserId();
+            //List<Reserva> reservas = this.Contexto.Reservas.Where(r => r.UserID == userId).ToList();
 
-            var model = new ReservasViewModel(livros, reservasUser);
+            //List<Reserva> reservasUser = new List<Reserva>();
+            //for (int i = 0; i < reservas.Count; i++)
+            //{
+            //    if (reservas[i].UserID.Equals(userId))
+            //    {
+            //        reservasUser.Add(reservas[i]);
+            //    }
+            //}
+
+            //var model = new ReservasViewModel(livros, reservasUser);
 
 
-            return View(model);
+            //return View(model);
         }
         // GET: Reservas
-        public ActionResult Reservar(int? livroId)
+        public ActionResult Reservar(int? id)
         {
-            if(livroId == null)
+            if(id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -53,15 +56,16 @@ namespace eLibrary.Controllers
                 var user = (new ApplicationDbContext()).Users.FirstOrDefault(s => s.Id == userId);
 
                 userId = User.Identity.GetUserId();
-                var livro = this.Contexto.Livros.FirstOrDefault(_ => _.LivroID == livroId);
-                //var livro = this.Contexto.Livros.FirstOrDefault(_ => _.LivroID == LivroId );
+                //var livro = this.Contexto.Livros.FirstOrDefault(_ => _.LivroID == id);
 
+                
                 Reserva reserva = new Reserva();
-                reserva.LivroID = livroId.Value;
+                reserva.LivroID = id.Value;
                 reserva.UserID = userId;
                 reserva.Data = System.DateTime.Now;
 
-                livro.Status = false;
+                //livro.Status = false;
+                //this.Contexto.Entry(livro).State = EntityState.Modified;
                 this.Contexto.Reservas.Add(reserva);
                 this.Contexto.SaveChanges();
                 return RedirectToAction("Index");

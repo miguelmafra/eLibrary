@@ -42,6 +42,9 @@
                         <th>
                             Editora
                         </th>
+                        <th>
+                            Status
+                        </th>
 
                     </tr>
 
@@ -64,6 +67,7 @@
                             @Html.DisplayFor(modelItem => item._Editora.Nome)
 
                         </td>
+                    
                         @if (item.Status)
                         {
                             <td>Disponível</td>
@@ -87,19 +91,22 @@
 
                                         @Html.ActionLink("Alterar Status", "AlterarStatus", "Livros", new { id = item.LivroID })
                                     }
+                                    else
+                                    {
 
 
                                     <td>
-                                <div class="btn-group">
+                                        <div class="btn-group">
 
-                                    <a href="/Livros/Details/@item.LivroID" class="btn btn-primary">Detalhes</a>
+                                         <a href="/Livros/Details/@item.LivroID" class="btn btn-primary">Detalhes</a>
 
-                                    @Html.ActionLink("Reservar", "Reservar", "Reservas", new { id = item.LivroID }, htmlAttributes: new { @class = "btn btn-success" })
+                                            @Html.ActionLink("Reservar", "Reservar", "Reservas", new { id = item.LivroID }, htmlAttributes: new { @class = "btn btn-success" })
                                    
                                 </div>
                             </td>
+                                    }
 
-                                 }
+                                }
 
                             </td>
 

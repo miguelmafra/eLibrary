@@ -71,7 +71,7 @@ namespace eLibrary.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                livro.Status = true;
                 this.Contexto.Livros.Add(livro);
                 this.Contexto.SaveChanges();
                 return RedirectToAction("Index");
@@ -229,7 +229,7 @@ namespace eLibrary.Controllers
             }
             else
             {
-                livro.Status = true;
+                livro.Status =  true;
                 Reserva reserva = this.Contexto.Reservas.FirstOrDefault(_ => _.LivroID == livro.LivroID);
                 this.Contexto.Reservas.Remove(reserva);
             }

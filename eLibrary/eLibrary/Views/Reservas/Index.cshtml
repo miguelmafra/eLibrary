@@ -7,28 +7,33 @@
 <header class="masthead text-white d-flex">
     <div class="container my-auto">
 
-
+        <hr />
+        <hr />
         <table class="table">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model._Livro.Titulo)
                 </th>
-
+                <th>
+                   Data/ Horário
+                </th>
                 <th></th>
             </tr>
 
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item._Livro.Titulo)
-                    </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item._Livro.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data)
+                </td>
+                <td>
 
-                    <td>
-
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ReservaID }, htmlAttributes: new { @class = "btn btn-danger" })
-                    </td>
-                </tr>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ReservaID }, htmlAttributes: new { @class = "btn btn-danger" })
+                </td>
+            </tr>
             }
 
         </table>
