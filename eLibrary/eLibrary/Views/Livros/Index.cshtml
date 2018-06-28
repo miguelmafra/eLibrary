@@ -42,9 +42,9 @@
                         <th>
                             Editora
                         </th>
-                        <th>
+                        @*<th>
                             Status
-                        </th>
+                        </th>*@
 
                     </tr>
 
@@ -68,14 +68,14 @@
 
                         </td>
                     
-                        @if (item.Status)
+                        @*@if (item.Status)
                         {
                             <td>Disponível</td>
                         }
                         else
                         {
                             <td>Reservado</td>
-                        }
+                        }*@
 
 
                             <td>
@@ -89,7 +89,7 @@
 
                                         @Html.ActionLink(" Delete  |", "Delete", new { id = item.LivroID })
 
-                                        @Html.ActionLink("Alterar Status", "AlterarStatus", "Livros", new { id = item.LivroID })
+                                        @*@Html.ActionLink("Alterar Status", "AlterarStatus", "Livros", new { id = item.LivroID })*@
                                     }
                                     else
                                     {

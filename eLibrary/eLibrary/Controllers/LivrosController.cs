@@ -219,26 +219,26 @@ namespace eLibrary.Controllers
         }
 
 
-        public ActionResult AlterarStatus(int id)
-        {
-            var livro = this.Contexto.Livros.FirstOrDefault(_ => _.LivroID == id);
+        //public ActionResult AlterarStatus(int? id)
+        //{
+        //    var livro = this.Contexto.Livros.FirstOrDefault(_ => _.LivroID == id);
 
-            if (livro.Status)
-            {
-                livro.Status = false;
-            }
-            else
-            {
-                livro.Status =  true;
-                Reserva reserva = this.Contexto.Reservas.FirstOrDefault(_ => _.LivroID == livro.LivroID);
-                this.Contexto.Reservas.Remove(reserva);
-            }
+        //    if (livro.Status)
+        //    {
+        //        livro.Status = false;
+        //    }
+        //    else
+        //    {
+        //        livro.Status =  true;
+        //        Reserva reserva = this.Contexto.Reservas.FirstOrDefault(_ => _.LivroID == livro.LivroID);
+        //        this.Contexto.Reservas.Remove(reserva);
+        //    }
 
-            this.Contexto.Entry(livro).State = EntityState.Modified;
-            this.Contexto.SaveChanges();
+        //    this.Contexto.Entry(livro).State = EntityState.Modified;
+        //    this.Contexto.SaveChanges();
 
-            return RedirectToAction("Index");
-        }
+        //    return RedirectToAction("Index");
+        //}
 
     }
 }
